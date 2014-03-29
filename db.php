@@ -1,10 +1,9 @@
 <?php
 
 $host='localhost';
-$user='mani';
-$password='';
+$user='root';
+$password='mani';
 
 $con = new mysqli($host,$user,$password);
-
 
 ?>
