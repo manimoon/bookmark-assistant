@@ -1,5 +1,6 @@
 <?php 
 include_once "auth/user.php";
+error_log("test");
 if(!is_authenticated()) {
 	header("Location: login.php");
 }

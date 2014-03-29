@@ -21,14 +21,14 @@ function is_authenticated() {
 	}
 }
 
-function login($user_id) {
+function login($username) {
 	global $con;
-	$query = "select * from user where user_id=$user_id";
+	$query = "select * from user where username='$username'";
 	$result = $con->query($query);
 	if($result->num_rows==1) {
 		$record = $result->fetch_assoc();
 		foreach($record as $k => $v) {
-			$_SESSION["login_".$k]=$v;
+			$_SESSION["auth_".$k]=$v;
 		}
 	} else {
 		error_log($query);
@@ -39,7 +39,7 @@ function login($user_id) {
 
 function logout() {
 	foreach($_SESSION as $k => $v) {
-		if(strpos($k,"login_")===0) {
+		if(strpos($k,"auth_")===0) {
 			unset($_SESSION[$k]);
 		}
 	}
