@@ -1,3 +1,9 @@
+<?php 
+include_once "auth/user.php";
+if(!is_authenticated()) {
+	header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <!--
     To change this license header, choose License Headers in Project Properties.
