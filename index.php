@@ -18,6 +18,7 @@ if(!is_authenticated()) {
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/pure-min.css">
 	</head>
 	<body>
 		<nav class="navbar navbar-default" role="navigation">
@@ -41,5 +42,15 @@ if(!is_authenticated()) {
 				</div>
 			</div>
 		</nav>
+		<div class="pure-g">
+			<div class="pure-u-1-5">
+				<div id="left-menu">
+					<div ></div>
+				</div>
+			</div>
+			<div class="pure-u-4-5">
+				Hello World
+			</div>
+		</div>
 	</body>
 </html>
