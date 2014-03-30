@@ -20,10 +20,26 @@ if(!is_authenticated()) {
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 	</head>
 	<body>
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-brand">
-				<div class="navbar-btn" >Social Bookmarking</div>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainmenu">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" hred="#">Social Bookmarking</a>
+				</div>
+				<div class="collapse navbar-collapse" id="mainmenu">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Action</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Logout</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
+		</nav>
 	</body>
 </html>
