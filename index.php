@@ -37,7 +37,7 @@ if(!is_authenticated()) {
 						<li><a href="#">Action</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Logout</a></li>
+						<li><a href="logout.php	">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -45,7 +45,14 @@ if(!is_authenticated()) {
 		<div class="pure-g">
 			<div class="pure-u-1-5">
 				<div id="left-menu">
-					<div ></div>
+					<div>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#">Ass</a></li>
+							<li><a href="#">Ass</a></li>
+							<li><a href="#">Ass</a></li>
+							<li><a href="#">Ass</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class="pure-u-4-5">

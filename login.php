@@ -13,7 +13,7 @@ $error_message="";
 			if(isset($_GET['redirect_to'])) {
 				header('Location: '.$_GET['redirect_to']);
 			} else {
-				header('Location: /index.php');
+				header('Location: ./index.php');
 			}
 		} else {
 			$error_message="Login failed";
