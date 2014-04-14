@@ -5,8 +5,11 @@ html, body {
 }
 
 #left-menu {
-	background-color:rgba(255,250,205,0.5);
+	background-color:rgba(0,0,0,0.75);
 	border-radius:10pt;
-	height:100%;
-	padding:5pt;
+	padding:0pt;
+}
+
+.page-container {
+	margin-top:60px;
 }

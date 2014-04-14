@@ -23,23 +23,44 @@ $error_message="";
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<style>
+		#loginpanel {
+			margin:100px auto;
+			width:400px;
+			
+		}
+	</style>
 </head>
 <body>
-	<form method='POST'>
-		<div class="error_message">
-			<?php echo $error_message; ?>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Social Bookmarking</a>
+			</div>
 		</div>
-		<div>
-			<label>Username</label>
-			<input type="text" name="username">
+	</nav>
+	<div class="panel panel-default" id="loginpanel">
+		<div class="panel-heading">Login</div>
+		<div class="panel-body">
+			<form method='POST' role="form">
+				<div class="error_message">
+					<?php echo $error_message; ?>
+				</div>
+				<div class="form-group">
+					<label>Username</label>
+					<input type="text" name="username" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" name="password" class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="submit" value="forgot password" class="btn btn-link">
+					<input type="submit" value="Login" class="btn btn-default pull-right">
+				</div>
+			</form>
 		</div>
-		<div>
-			<label>Password</label>
-			<input type="password" name="password">
-		</div>
-		<div>
-			<input type="submit">
-		</div>
-	</form>
+	</div>
 </body>
 </html>
