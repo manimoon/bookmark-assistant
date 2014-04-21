@@ -30,7 +30,7 @@ create database `bookmarks`;
 use `bookmarks`;
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `category_id` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category` text,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `comment_id` int(11) NOT NULL DEFAULT '0',
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `link_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `comment_text` text,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `likes_dislikes` (
 --
 
 CREATE TABLE IF NOT EXISTS `links` (
-  `link_id` int(11) NOT NULL DEFAULT '0',
+  `link_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text,
   `category_id` int(11) DEFAULT NULL,
   `url` text,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `links` (
 --
 
 CREATE TABLE IF NOT EXISTS `share` (
-  `share_id` int(11) NOT NULL DEFAULT '0',
+  `share_id` int(11) NOT NULL AUTO_INCREMENT,
   `link_id` int(11) DEFAULT NULL,
   `from` int(11) DEFAULT NULL,
   `to` int(11) DEFAULT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `share` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text,
   `first_name` text,
   `last_name` text,
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
-(0,'manimoon', 'mani', 'moon', 'nfdsnf', 'mbdbfb', '', '0000-00-00');
+(0,'ratanraj', 'Ratanraj', 'Ravuri', 'killjoy', 'ratanraj.r@gmail.com', '', '0000-00-00');
 
 --
 -- Constraints for dumped tables

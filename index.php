@@ -20,6 +20,7 @@ if(!is_authenticated()) {
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -48,16 +49,17 @@ if(!is_authenticated()) {
 				<div id="left-menu">
 					<div>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#" data-toggle="modal" data-target="#AddLinksModal">Add new URL</a></li>
-							<li><a href="#">My Bookmarks</a></li>
-							<li><a href="#">Search</a></li>
-							<li><a href="#">My Contacts</a></li>
+							<li><a href="#AddLink" data-toggle="modal" data-target="#AddLinksModal">Add new URL</a></li>
+							<li><a href="#MyLinks">My Bookmarks</a></li>
+							<li><a href="#Search">Search</a></li>
+							<li><a href="#MyContacts">My Contacts</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-9">
-				Hello World &times;
+				<div class="panel panel-default content-panel">
+				</div>
 			</div>
 		</div>
 		<div class="modal fade" id="AddLinksModal">
@@ -68,7 +70,11 @@ if(!is_authenticated()) {
 						<h4 class="modal-title">Add New URL</h4>
 					</div>
 					<div class="modal-body">
-						<p>Test</p>
+						<form>
+							<select>
+								<option>A</option>
+							</select>
+						</form>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
