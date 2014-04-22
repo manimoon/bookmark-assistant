@@ -29,6 +29,11 @@ drop database if exists `bookmarks`;
 create database `bookmarks`;
 use `bookmarks`;
 
+CREATE TABLE IF NOT EXISTS `category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` text,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,12 +75,12 @@ CREATE TABLE IF NOT EXISTS `likes_dislikes` (
 
 CREATE TABLE IF NOT EXISTS `links` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11),
   `title` text,
   `category` text,
   `url` text,
   `rank` int(11) DEFAULT NULL,
-  PRIMARY KEY (`link_id`)
+  PRIMARY KEY (`link_id`),
+  KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -141,6 +146,8 @@ ALTER TABLE `likes_dislikes`
 --
 -- Constraints for table `links`
 --
+ALTER TABLE `links`
+  ADD CONSTRAINT `links_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
 -- Constraints for table `share`

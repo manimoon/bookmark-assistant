@@ -38,9 +38,7 @@ if(!is_authenticated()) {
 					<ul class="nav navbar-nav">
 						<li><a href="#">Action</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="logout.php	">Logout</a></li>
-					</ul>
+					<p class="navbar-text navbar-right">Signed in as <a href="logout.php" class="navbar-link"><?php echo $_SESSION['auth_username']; ?></a></p>
 				</div>
 			</div>
 		</nav>
@@ -49,7 +47,7 @@ if(!is_authenticated()) {
 				<div id="left-menu">
 					<div>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#AddLink" data-toggle="modal" data-target="#AddLinksModal">Add new URL</a></li>
+							<li><a href="#AddLink">Add new URL</a></li>
 							<li><a href="#MyLinks">My Bookmarks</a></li>
 							<li><a href="#Search">Search</a></li>
 							<li><a href="#MyContacts">My Contacts</a></li>
@@ -59,27 +57,6 @@ if(!is_authenticated()) {
 			</div>
 			<div class="col-md-9">
 				<div class="panel panel-default content-panel">
-				</div>
-			</div>
-		</div>
-		<div class="modal fade" id="AddLinksModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismis="modal" aria-hidden="true">&times</button>
-						<h4 class="modal-title">Add New URL</h4>
-					</div>
-					<div class="modal-body">
-						<form>
-							<select>
-								<option>A</option>
-							</select>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-primary">Add</button>
-					</div>
 				</div>
 			</div>
 		</div>
