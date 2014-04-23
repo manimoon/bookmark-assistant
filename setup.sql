@@ -117,12 +117,24 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
+
 INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
-(0,'ratanraj', 'Ratanraj', 'Ravuri', 'killjoy', 'ratanraj.r@gmail.com', '', '0000-00-00');
+(0,'ratanraj', 'Ratanraj', 'Ravuri', 'killjoy', 'ratanraj.r@gmail.com', '', '1990-05-25');
+INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
+(1,'manimoon', 'Nagamani', 'Pilla', 'killjoy', 'mnmn151@gmail.com', '', '1991-10-20');
+INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
+(2,'aditya', 'Aditya', 'Reddy', 'killjoy', 'aditya.p@gmail.com', '', '1990-05-30');
 
 --
--- Constraints for dumped tables
 --
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `contact` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Constraints for table `comments`
