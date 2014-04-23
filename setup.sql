@@ -132,8 +132,19 @@ INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`,
 CREATE TABLE IF NOT EXISTS `contacts` (
   `contact` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `friend_id` int(11) NOT NULL
+  `friend_id` int(11) NOT NULL,
+  PRIMARY KEY (`contact`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+--
+--
+
+INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (0,1);
+INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (0,2);
+INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (1,0);
+INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (2,0);
+INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (1,2);
 
 
 --
