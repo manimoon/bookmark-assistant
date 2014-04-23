@@ -13,10 +13,10 @@ while($row = $res->fetch_assoc()) {
 		$obj[$row['category']] = Array();
 	}
 	
-	$obj[$row['category']][$row['link_id']] = [
+	$obj[$row['category']][$row['link_id']] = array(
 						'url'=>$row['url'],
 						'title'=>$row['title']
-					];
+					);
 }
 echo json_encode($obj);
 ?>

@@ -32,6 +32,31 @@ use `bookmarks`;
 
 -- --------------------------------------------------------
 
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` text,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `categories`(category) VALUES('Programming');
+INSERT INTO `categories`(category) VALUES('Java');
+INSERT INTO `categories`(category) VALUES('C/C++');
+INSERT INTO `categories`(category) VALUES('HTML');
+INSERT INTO `categories`(category) VALUES('Anime');
+INSERT INTO `categories`(category) VALUES('Movies');
+INSERT INTO `categories`(category) VALUES('Music');
+INSERT INTO `categories`(category) VALUES('Education');
+INSERT INTO `categories`(category) VALUES('Sports');
+INSERT INTO `categories`(category) VALUES('History');
+INSERT INTO `categories`(category) VALUES('IT');
+INSERT INTO `categories`(category) VALUES('Open Source');
+INSERT INTO `categories`(category) VALUES('Science & Technology');
+INSERT INTO `categories`(category) VALUES('Humor');
+INSERT INTO `categories`(category) VALUES('Cyberculture');
+INSERT INTO `categories`(category) VALUES('Mathematics');
+
 --
 -- Table structure for table `comments`
 --

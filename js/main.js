@@ -77,10 +77,10 @@ addLink = function(category,link,description){
 			console.log(JSON.stringify(z));
 		}
 	});
-}
+};
 
 loadAddLinks = function() {
-	$.get("addlinks.html",{},function(data){
+	$.get("addlinks_dialog.php",{},function(data){
 		var dialog = $(data);
 		dialog.modal();
 		$("#addlinks-category").val("");
@@ -102,12 +102,30 @@ loadAddLinks = function() {
 			}
 			addLink(category,link,description);
 			dialog.modal('hide');
+			loadMyLinks();
 		});
 	});	
 }
 
-loadMyContacts = function() {
+loadPeopleSearchResults = function(query){
+    $.getJSON("people_search_complete.php",{query:query},function(obj){
+        var user = obj['user'];
+        var contacts = obj['contacts'];
+        var search_result = $("#people-search-result");
+        search_result.html("");
+		for(var i in user) {
+			$("<div></div>").addClass("person").html("<username>"+user[i]['username']+"</username>").appendTo(search_result);
+		}
+    });
+};
 
+loadMyContacts = function() {
+$.get("people_search.php",function(data){
+    setContent("People Search",data,null);
+        $("#people-search-input").bind("keyup",function(event){
+            loadPeopleSearchResults($("#people-search-input").val());
+        });
+    });
 };
 
 loadSearchResults = function(query){
@@ -119,7 +137,7 @@ loadSearchResults = function(query){
 			"<td>"+obj[i]['category']+"</td></tr>").appendTo("#search-result table");
 		}
 	});
-}
+};
 
 loadSearchPage = function() {
 	$.get("search.php",function(data){

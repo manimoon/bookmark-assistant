@@ -9,7 +9,7 @@ if(strlen($_GET['query'])<1) {
 }
 $q = $_GET['query'];
 
-$query = "select * from links where title like '%$q%' or url like '%$q%'";
+$query = "select * from links where title like '%$q%' or url like '%$q%' or category like '%$q%'";
 
 $res = $con->query($query);
 
