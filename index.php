@@ -47,9 +47,9 @@ if(!is_authenticated()) {
 				<div id="left-menu">
 					<div>
 						<ul class="nav nav-pills nav-stacked">
-							<li><a href="#AddLink">Add new URL</a></li>
+							<li><a href="#AddLink">Add New Bookmark</a></li>
 							<li><a href="#MyLinks">My Bookmarks</a></li>
-							<li><a href="#Search">Search</a></li>
+							<li><a href="#Search">Search Bookmarks</a></li>
 							<li><a href="#MyContacts">My Contacts</a></li>
 						</ul>
 					</div>
