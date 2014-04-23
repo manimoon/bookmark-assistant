@@ -5,17 +5,21 @@ if(isset($_POST['username']) &&
 	isset($_POST['email']) &&
 	isset($_POST['firstname']) &&
 	isset($_POST['lastname']) &&
-	isset($_POST['dob']) &&
-	isset($_POST['profile-pic'])) {
+	isset($_POST['dob'])) {
 	
-	if(create_user($_POST['username'],$_POST['firstname'],$_POST['lastname'],$_POST['password'],$_POST['email'],$_POST['profile-pic'],$_POST['dob'])) {
+	error_log(json_encode($_FILES));
+	$image = $_FILES["profile-pic"]["tmp_name"];
+	$imageData = base64_encode(file_get_contents($image));
+	$pic = 'data: '.mime_content_type($image).';base64,'.$imageData;
+	
+	
+	if(create_user($_POST['username'],$_POST['firstname'],$_POST['lastname'],$_POST['password'],$_POST['email'],$pic,$_POST['dob'])) {
 		header('Location: ./login.php');
 	} else {
 		error_log("RRR: couldn't create user");
 	}
 } else {
 	error_log(json_encode($_POST));
-	error_log("RRR: Invalid form");
 }
 
 ?>
@@ -54,7 +58,7 @@ if(isset($_POST['username']) &&
 						<h2>Register</h2>
 					</div>
 					<div class="panel-body">
-						<form role="form" class="col-md-6" method="post" action="register.php">
+						<form role="form" class="col-md-6" method="post" action="register.php" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="username">Username</label>
 								<input type="text" class="form-control" id="username" name="username" placeholder="Username">
