@@ -2,8 +2,8 @@
 include_once "auth/user.php";
 $error_message="";
 	logout();
-	if(isset($_POST['loginform']) || 
-		isset($_POST['username']) || 
+	if(isset($_POST['loginform']) && 
+		isset($_POST['username']) && 
 		isset($_POST['password']))
 	{
 		if(authenticate($_POST['username'],$_POST['password']))
@@ -56,7 +56,7 @@ $error_message="";
 					<input type="password" name="password" class="form-control">
 				</div>
 				<div class="form-group">
-					<input type="submit" value="forgot password" class="btn btn-link">
+					<a href="register.php" class="btn btn-link">Don't have an account? Register!</a>
 					<input type="submit" value="Login" class="btn btn-default pull-right">
 				</div>
 			</form>

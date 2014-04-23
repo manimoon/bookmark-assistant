@@ -44,4 +44,10 @@ function logout() {
 		}
 	}
 }
+
+function create_user($username,$fn,$ln,$pwd,$email,$pic,$dob) {
+	global $con;
+	$query = "INSERT INTO user(username,first_name,last_name,password,email_id,profile_pic,dob) VALUES('$username','$fn','$ln','$pwd','$email','$pic','$dob')";
+	return $con->query($query);
+}
 ?>
