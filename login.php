@@ -9,7 +9,6 @@ $error_message="";
 		if(authenticate($_POST['username'],$_POST['password']))
 		{
 			login($_POST['username']);
-			error_log(json_encode($_SESSION));
 			if(isset($_GET['redirect_to'])) {
 				header('Location: '.$_GET['redirect_to']);
 			} else {
@@ -18,6 +17,9 @@ $error_message="";
 		} else {
 			$error_message="Login failed";
 		}
+	} else {
+		$error_message = "Login failed";
+		error_log(json_encode($_POST));
 	}
 ?>
 <!DOCTYPE html>
@@ -44,6 +46,7 @@ $error_message="";
 		<div class="panel-heading">Login</div>
 		<div class="panel-body">
 			<form method='POST' role="form">
+				<input type="hidden" name="loginform" value="loginform" />
 				<div class="error_message">
 					<?php echo $error_message; ?>
 				</div>

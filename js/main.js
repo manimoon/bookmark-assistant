@@ -80,13 +80,13 @@ addLink = function(category,link,description){
 };
 
 loadAddLinks = function() {
-	$.get("addlinks_dialog.php",{},function(data){
+	$.get("addlinks_dialog.php?seed="+Math.random(),{},function(data){
 		var dialog = $(data);
 		dialog.modal();
 		$("#addlinks-category").val("");
 		$("#addlinks-link").val("");
 		$("#addlinks-description").val("");
-		
+		$("#addlinks-add",dialog).unbind();
 		$("#addlinks-add",dialog).click(function(){
 			var category = $("#addlinks-category").val();
 			var link = $("#addlinks-link").val();
@@ -114,7 +114,7 @@ loadPeopleSearchResults = function(query){
         var search_result = $("#people-search-result");
         search_result.html("");
 		for(var i in user) {
-			$("<div></div>").addClass("person").html("<username>"+user[i]['username']+"</username>").appendTo(search_result);
+			$("<div></div>").addClass("person").html("<img src='"+user[i]['profile_pic']+"' /><username>"+user[i]['username']+"</username>").appendTo(search_result);
 		}
     });
 };
