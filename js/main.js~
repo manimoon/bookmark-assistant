@@ -178,7 +178,6 @@ $.get("people_search.php",function(data){
             loadPeopleSearchResults($("#people-search-input").val());
         });
     });
-    });
 };
 
 loadSearchResults = function(query){

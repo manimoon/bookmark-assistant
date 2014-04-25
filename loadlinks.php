@@ -18,11 +18,8 @@ while($row = $res->fetch_assoc()) {
 						'title'=>$row['title']
 					);
 }
-<<<<<<< HEAD
 if(sizeof($obj)==0)
 $obj['empty']='true';
 
-=======
->>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 echo json_encode($obj);
 ?>

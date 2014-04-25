@@ -35,7 +35,6 @@ if(!is_authenticated()) {
 					<a class="navbar-brand" href="#">Social Bookmarking</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mainmenu">
-<<<<<<< HEAD
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li><p class="navbar-text navbar-right">Signed in as</p></li>
@@ -49,9 +48,6 @@ if(!is_authenticated()) {
 							</ul>
 						</li>
 					</ul>
-=======
-					<p class="navbar-text navbar-right">Signed in as <a href="logout.php" class="navbar-link"><?php echo $_SESSION['auth_username']; ?></a></p>
->>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 				</div>
 			</div>
 		</nav>
