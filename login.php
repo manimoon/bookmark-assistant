@@ -18,10 +18,6 @@ $error_message="";
 			$error_message="Login failed";
 		}
 	} else {
-<<<<<<< HEAD
-=======
-		$error_message = "Login failed";
->>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 		error_log(json_encode($_POST));
 	}
 ?>
