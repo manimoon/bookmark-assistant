@@ -1,12 +1,41 @@
 html, body {
     margin:0px;
     padding:0px;
-    overflow:hidden;
 }
 
 #left-menu {
-	background-color:rgba(5,5,5,0.5);
+	background-color:rgba(0,0,0,0.75);
 	border-radius:10pt;
-	height:100%;
-	padding:5pt;
+	padding:0pt;
+}
+
+.page-container {
+	margin-top:60px;
+}
+
+.person {
+	height:140px;
+	margin:10px;
+	text-align:center;
+}
+
+.person username {
+	width:100%;
+	float:left;
+	text-align:center;
+	background-color:black;
+	color:white;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
+}
+
+.person img {
+	width:140px;
+	height:140px;
+	border-radius:20px;
+	border:3px solid #000;
+}
+
+#people-search-result h3 {
+	text-decoration:underline;
 }

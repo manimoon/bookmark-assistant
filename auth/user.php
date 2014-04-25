@@ -23,7 +23,7 @@ function is_authenticated() {
 
 function login($username) {
 	global $con;
-	$query = "select * from user where username='$username'";
+	$query = "select user_id,username,first_name,last_name,email_id,dob from user where username='$username'";
 	$result = $con->query($query);
 	if($result->num_rows==1) {
 		$record = $result->fetch_assoc();
@@ -43,5 +43,18 @@ function logout() {
 			unset($_SESSION[$k]);
 		}
 	}
+}
+
+function create_user($username,$fn,$ln,$pwd,$email,$pic,$dob) {
+	global $con;
+	$query = "INSERT INTO user(username,first_name,last_name,password,email_id,profile_pic,dob) VALUES('$username','$fn','$ln','$pwd','$email','$pic','$dob')";
+	return $con->query($query);
+}
+
+function update_user($userid,$username,$fn,$ln,$email,$dob) {
+	global $con;
+	$query = "UPDATE user set username='$username',first_name='$fn',last_name='$ln',email_id='$email',dob='$dob' where user_id=$userid";
+	error_log($query);
+	return $con->query($query);
 }
 ?>

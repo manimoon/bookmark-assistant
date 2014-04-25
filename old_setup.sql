@@ -29,33 +29,13 @@ drop database if exists `bookmarks`;
 create database `bookmarks`;
 use `bookmarks`;
 
-
--- --------------------------------------------------------
-
-
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category` text,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-INSERT INTO `categories`(category) VALUES('Programming');
-INSERT INTO `categories`(category) VALUES('Java');
-INSERT INTO `categories`(category) VALUES('C/C++');
-INSERT INTO `categories`(category) VALUES('HTML');
-INSERT INTO `categories`(category) VALUES('Anime');
-INSERT INTO `categories`(category) VALUES('Movies');
-INSERT INTO `categories`(category) VALUES('Music');
-INSERT INTO `categories`(category) VALUES('Education');
-INSERT INTO `categories`(category) VALUES('Sports');
-INSERT INTO `categories`(category) VALUES('History');
-INSERT INTO `categories`(category) VALUES('IT');
-INSERT INTO `categories`(category) VALUES('Open Source');
-INSERT INTO `categories`(category) VALUES('Science & Technology');
-INSERT INTO `categories`(category) VALUES('Humor');
-INSERT INTO `categories`(category) VALUES('Cyberculture');
-INSERT INTO `categories`(category) VALUES('Mathematics');
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `comments`
@@ -95,12 +75,12 @@ CREATE TABLE IF NOT EXISTS `likes_dislikes` (
 
 CREATE TABLE IF NOT EXISTS `links` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11),
   `title` text,
   `category` text,
   `url` text,
   `rank` int(11) DEFAULT NULL,
-  PRIMARY KEY (`link_id`)
+  PRIMARY KEY (`link_id`),
+  KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -142,35 +122,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-
 INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
-(0,'ratanraj', 'Ratanraj', 'Ravuri', 'killjoy', 'ratanraj.r@gmail.com', '', '1990-05-25');
-INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
-(1,'manimoon', 'Nagamani', 'Pilla', 'killjoy', 'mnmn151@gmail.com', '', '1991-10-20');
-INSERT INTO `user` (`user_id`,`username`, `first_name`, `last_name`, `password`, `email_id`, `profile_pic`, `dob`) VALUES
-(2,'aditya', 'Aditya', 'Reddy', 'killjoy', 'aditya.p@gmail.com', '', '1990-05-30');
+(0,'ratanraj', 'Ratanraj', 'Ravuri', 'killjoy', 'ratanraj.r@gmail.com', '', '0000-00-00');
 
 --
+-- Constraints for dumped tables
 --
---
-
-CREATE TABLE IF NOT EXISTS `contacts` (
-  `contact` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `friend_id` int(11) NOT NULL,
-  PRIMARY KEY (`contact`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
---
---
-
-INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (0,1);
-INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (0,2);
-INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (1,0);
-INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (2,0);
-INSERT INTO `contacts` (`user_id`,`friend_id`) VALUES (1,2);
-
 
 --
 -- Constraints for table `comments`
@@ -189,6 +146,8 @@ ALTER TABLE `likes_dislikes`
 --
 -- Constraints for table `links`
 --
+ALTER TABLE `links`
+  ADD CONSTRAINT `links_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 
 --
 -- Constraints for table `share`

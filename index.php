@@ -18,39 +18,57 @@ if(!is_authenticated()) {
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="stylesheet" type="text/css" href="css/pure-min.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 			<div class="container-fluid">
-				<div class="navbar-header>
+				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainmenu">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" hred="#">Social Bookmarking</a>
+					<a class="navbar-brand" href="#">Social Bookmarking</a>
 				</div>
 				<div class="collapse navbar-collapse" id="mainmenu">
-					<ul class="nav navbar-nav">
-						<li><a href="#">Action</a></li>
-					</ul>
+					
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Logout</a></li>
+						<li><p class="navbar-text navbar-right">Signed in as</p></li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['auth_username']; ?>
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="profile.php">Edit Profile</a></li>
+								<li><a href="logout.php">Logout</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<div class="pure-g">
-			<div class="pure-u-1-5">
+		<div class="row container page-container">
+			<div class="col-md-3">
 				<div id="left-menu">
-					<div ></div>
+					<div>
+						<ul class="nav nav-pills nav-stacked">
+							<li><a href="#AddLink">Add New Bookmark</a></li>
+							<li><a href="#MyLinks">My Bookmarks</a></li>
+							<li><a href="#Search">Search Bookmarks</a></li>
+							<li><a href="#MyContacts">My Contacts</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<div class="pure-u-4-5">
-				Hello World
+			<div class="col-md-9">
+				<div class="panel panel-default content-panel">
+				</div>
 			</div>
+			<div style="display:none" id="TheSpecialPageElement"></div>
 		</div>
 	</body>
 </html>
