@@ -14,15 +14,25 @@ html, body {
 }
 
 .person {
+<<<<<<< HEAD
 	height:140px;
 	margin:10px;
 	text-align:center;
+=======
+	width:140px;
+	height:140px;
+	border:1px solid #aaa;
+	border-radius:20px;
+	float:left;
+	margin:10px;
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 }
 
 .person username {
 	width:100%;
 	float:left;
 	text-align:center;
+<<<<<<< HEAD
 	background-color:black;
 	color:white;
 	border-bottom-left-radius:20px;
@@ -38,4 +48,11 @@ html, body {
 
 #people-search-result h3 {
 	text-decoration:underline;
+=======
+}
+
+.person img {
+	width:100px;
+	height:100px;
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 }

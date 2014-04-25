@@ -36,10 +36,13 @@ loadMyLinks = function() {
 		data:{},
 		success:function(data){
 			var container = $("<div></div>");
+<<<<<<< HEAD
 			if(data['empty']=='true') {
 				setContent("My Bookmarks","<div class='alert alert-danger'>"+"You did not add any links yet. Add links by clicking 'Add new Bookmark'."+"</div>",null);
 				return;
 			}
+=======
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 			for(var i in data) {
 				var block=$("<div></div>");
 				$("<h2>"+i+"</h2>").appendTo(block);
@@ -84,7 +87,11 @@ addLink = function(category,link,description){
 };
 
 loadAddLinks = function() {
+<<<<<<< HEAD
 	$.get("addlinks_dialog.php?seed="+Math.random(),{'list':$("#TheSpecialPageElement").html()},function(data){
+=======
+	$.get("addlinks_dialog.php?seed="+Math.random(),{},function(data){
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 		var dialog = $(data);
 		dialog.modal();
 		$("#addlinks-category").val("");
@@ -92,6 +99,7 @@ loadAddLinks = function() {
 		$("#addlinks-description").val("");
 		$("#addlinks-add",dialog).unbind();
 		$("#addlinks-add",dialog).click(function(){
+<<<<<<< HEAD
 			$(".addlink-well").each(function(obj){
 				category=$(".addlink-category",this).val();
 				link=$(".addlink-link",this).val();
@@ -99,6 +107,21 @@ loadAddLinks = function() {
 				addLink(category,link,desc);
 			});
 			//addLink(category,link,description);
+=======
+			var category = $("#addlinks-category").val();
+			var link = $("#addlinks-link").val();
+			var description = $("#addlinks-description").val();
+			
+			if(!urlregexp.test(link)) {
+				$("#addlinks-link").parent().addClass("has-error");
+				return;
+			}
+			if(description.length<=0) {
+				$("#addlinks-description").parent().addClass("has-error");
+				return;
+			}
+			addLink(category,link,description);
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 			dialog.modal('hide');
 			loadMyLinks();
 		});
@@ -110,6 +133,7 @@ loadPeopleSearchResults = function(query){
         var user = obj['user'];
         var contacts = obj['contacts'];
         var search_result = $("#people-search-result");
+<<<<<<< HEAD
         var others= $("<div><h3>Others:</h3></div>");
         var friends=$("<div><h3>Friends:</h3></div>");
         search_result.html("");
@@ -143,16 +167,30 @@ loadPeopleSearchResults = function(query){
 		}
 		search_result.append(others);
 		search_result.append(friends);
+=======
+        search_result.html("");
+		for(var i in user) {
+			$("<div></div>").addClass("person").html("<img src='"+user[i]['profile_pic']+"' /><username>"+user[i]['username']+"</username>").appendTo(search_result);
+		}
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
     });
 };
 
 loadMyContacts = function() {
+<<<<<<< HEAD
     $.get("people_search.php",function(data){
         setContent("People Search",data,null);
         $("#people-search-input").bind("keyup",function(event){
             loadPeopleSearchResults($("#people-search-input").val());
         });
         loadPeopleSearchResults('');
+=======
+$.get("people_search.php",function(data){
+    setContent("People Search",data,null);
+        $("#people-search-input").bind("keyup",function(event){
+            loadPeopleSearchResults($("#people-search-input").val());
+        });
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
     });
 };
 
@@ -180,6 +218,10 @@ $(function(){
 	loadMyLinks();
 	$(".nav li a").click(function(event){
 		hash = event.target.hash;
+<<<<<<< HEAD
+=======
+		
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 		if(hash=="#AddLink") {
 			loadAddLinks();
 		} else if(hash=="#Search") {
@@ -190,7 +232,10 @@ $(function(){
 			loadMyContacts();
 		} else {
 			console.log(hash)
+<<<<<<< HEAD
 			return;
+=======
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 		}
 		event.preventDefault();
 	});

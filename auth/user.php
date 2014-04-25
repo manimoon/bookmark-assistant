@@ -50,6 +50,7 @@ function create_user($username,$fn,$ln,$pwd,$email,$pic,$dob) {
 	$query = "INSERT INTO user(username,first_name,last_name,password,email_id,profile_pic,dob) VALUES('$username','$fn','$ln','$pwd','$email','$pic','$dob')";
 	return $con->query($query);
 }
+<<<<<<< HEAD
 
 function update_user($userid,$username,$fn,$ln,$email,$dob) {
 	global $con;
@@ -57,4 +58,6 @@ function update_user($userid,$username,$fn,$ln,$email,$dob) {
 	error_log($query);
 	return $con->query($query);
 }
+=======
+>>>>>>> bd0440d6272738a719ef8df018611ab7c85c6689
 ?>
