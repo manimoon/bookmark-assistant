@@ -85,7 +85,6 @@ addLink = function(category,link,description){
 
 loadAddLinks = function() {
 	$.get("addlinks_dialog.php?seed="+Math.random(),{'list':$("#TheSpecialPageElement").html()},function(data){
-	$.get("addlinks_dialog.php?seed="+Math.random(),{},function(data){
 		var dialog = $(data);
 		dialog.modal();
 		$("#addlinks-category").val("");
@@ -100,25 +99,11 @@ loadAddLinks = function() {
 				addLink(category,link,desc);
 			});
 			//addLink(category,link,description);
-			var category = $("#addlinks-category").val();
-			var link = $("#addlinks-link").val();
-			var description = $("#addlinks-description").val();
-			
-			if(!urlregexp.test(link)) {
-				$("#addlinks-link").parent().addClass("has-error");
-				return;
-			}
-			if(description.length<=0) {
-				$("#addlinks-description").parent().addClass("has-error");
-				return;
-			}
-			addLink(category,link,description);
 			dialog.modal('hide');
 			loadMyLinks();
 		});
-	});
-     });	
-};
+	});	
+}
 
 loadPeopleSearchResults = function(query){
     $.getJSON("people_search_complete.php",{query:query},function(obj){
@@ -158,10 +143,6 @@ loadPeopleSearchResults = function(query){
 		}
 		search_result.append(others);
 		search_result.append(friends);
-        search_result.html("");
-		for(var i in user) {
-			$("<div></div>").addClass("person").html("<img src='"+user[i]['profile_pic']+"' /><username>"+user[i]['username']+"</username>").appendTo(search_result);
-		}
     });
 };
 
@@ -172,12 +153,6 @@ loadMyContacts = function() {
             loadPeopleSearchResults($("#people-search-input").val());
         });
         loadPeopleSearchResults('');
-$.get("people_search.php",function(data){
-    setContent("People Search",data,null);
-        $("#people-search-input").bind("keyup",function(event){
-            loadPeopleSearchResults($("#people-search-input").val());
-        });
-    });
     });
 };
 
@@ -220,3 +195,4 @@ $(function(){
 		event.preventDefault();
 	});
 });
+
