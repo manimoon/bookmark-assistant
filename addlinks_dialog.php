@@ -7,21 +7,15 @@
 			</div>
 			<div class="modal-body">
 				<form>
-					<div class="form-group">
-						<label>Category</label>
-						<select class="form-control" id="addlinks-category" >
-							<?php
-                                include_once "db.php";
-								$query = "select * from categories";
-                                global $con;
-								$res = $con->query($query);
-								while($row = $res->fetch_assoc()) {
-									$options=$options."<option>".$row['category']."</option>\n";
-									echo "<option>".$row['category']."</option>\n";
-								}
-							?>
-						</select>
-					</div>
+				<?php
+					include_once "db.php";
+					$query = "select * from categories";
+					global $con;
+					$res = $con->query($query);
+					while($row = $res->fetch_assoc()) {
+					$options=$options."<option>".$row['category']."</option>\n";
+					}
+				?>
 					<div id="tabslist">
 						<?php 
 							$tabs_list = json_decode($_GET['list']);
@@ -30,7 +24,7 @@
 								$x=$x+1;
 								?>
 								<div class="well addlink-well">
-									<select class="form-control" id="addlinks-category" >
+									<select class="addlink-category form-control" >
 										<?php echo $options; ?>
 									</select>
 									<div class="form-group">
@@ -49,15 +43,6 @@
 				</form>
 				<div id="TheSpecialPageElement">
 				</div>
-					<div class="form-group">
-						<label>Link</label>
-						<input type="url" class="form-control" id="addlinks-link" />
-					</div>
-					<div class="form-group">
-						<label>Description</label>
-						<textarea class="form-control" id="addlinks-description" ></textarea>
-					</div>
-				</form>
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default" data-dismiss="modal">Cancel</button>

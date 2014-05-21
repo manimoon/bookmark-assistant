@@ -28,6 +28,80 @@ setContent = function(heading,body,footer) {
 	setContentFooter(footer);
 };
 
+loadComments = function(comment_id,element){
+	element.html("");
+	$.ajax({
+		type:'GET',
+		dataType:'json',
+		url:'loadcomments.php',
+		data:{id:comment_id},
+		success:function(obj){
+			for(var i in obj) {
+				element.html(obj[i]['comment_text']);
+			}
+		}
+		
+	});
+};
+
+loadLink = function(id) {
+
+	$.get("link_dialog.php?seed="+Math.random(),{id:id},function(data){
+		var dialog = $(data);
+		dialog.modal();
+		loadComments(id,$("#link-dialog-comments",dialog));
+		$(".close",dialog).click(function(){
+			dialog.modal('hide');
+		});
+		$("#link-dialog-comment-button",dialog).click(function(){
+			
+		});
+	});
+	
+};
+
+loadUserLinks = function(id,username){
+	$.ajax({
+		type:'GET',
+		url:'loadlinks.php',
+		dataType:'json',
+		data:{id:id},
+		success:function(data){
+			var container = $("<div></div>");
+			if(data['empty']=='true') {
+				setContent(username,"<div class='alert alert-danger'>"+"The user did not add any links yet.</div>",null);
+				return;
+			}
+			for(var i in data) {
+				var block=$("<div></div>");
+				$("<h2>"+i+"</h2>").appendTo(block);
+				var table = $("<table></table>");
+				table.addClass("table");
+				table.addClass("table-hover");
+				table.addClass("table-bordered");
+				for(var j in data[i]) {
+					var row = $("<tr link_id="+j+"></tr>");
+					$("<td class='col-md-4'>"+data[i][j]['title']+"</td>").appendTo(row);
+					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"'>"+data[i][j]['url']+"</a></td>").appendTo(row);
+					table.append(row);
+					row.click(function(){
+						loadLink($(this).attr('link_id'));
+					});
+				}
+				block.append(table);
+				container.append(block);
+			}
+			setContent(username,null,null);
+			$(".content-panel .panel-body").append(container);
+		},
+		error:function(x,y,z){
+			console.log(JSON.stringify(x));
+			console.log(JSON.stringify(y));
+			console.log(JSON.stringify(z));
+		}
+	});	
+};
+
 loadMyLinks = function() {
 	$.ajax({
 		type:'GET',
@@ -48,10 +122,13 @@ loadMyLinks = function() {
 				table.addClass("table-hover");
 				table.addClass("table-bordered");
 				for(var j in data[i]) {
-					var row = $("<tr></tr>");
+					var row = $("<tr link_id="+j+"></tr>");
 					$("<td class='col-md-4'>"+data[i][j]['title']+"</td>").appendTo(row);
 					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"'>"+data[i][j]['url']+"</a></td>").appendTo(row);
 					table.append(row);
+					row.click(function(){
+						loadLink($(this).attr('link_id'));
+					});
 				}
 				block.append(table);
 				container.append(block);
@@ -84,6 +161,7 @@ addLink = function(category,link,description){
 };
 
 loadAddLinks = function() {
+	
 	$.get("addlinks_dialog.php?seed="+Math.random(),{'list':$("#TheSpecialPageElement").html()},function(data){
 		var dialog = $(data);
 		dialog.modal();
@@ -97,12 +175,16 @@ loadAddLinks = function() {
 				link=$(".addlink-link",this).val();
 				desc=$(".addlink-desc",this).val();
 				addLink(category,link,desc);
+				loadMyLinks();
 			});
 			//addLink(category,link,description);
 			dialog.modal('hide');
-			loadMyLinks();
 		});
 	});	
+}
+
+loadProfile = function(username,id) {
+	loadUserLinks(id,username);
 }
 
 loadPeopleSearchResults = function(query){
@@ -115,7 +197,13 @@ loadPeopleSearchResults = function(query){
         search_result.html("");
 		for(var i in user) {
 			var row = $("<div class='row'></div>");
-			$("<div></div>").addClass("person").addClass("col-md-3").html("<img src='"+user[i]['profile_pic']+"' />").appendTo(row);
+			var propic="";
+			if(user[i]['profile_pic']=='data: ;base64,') {
+				propic="anon.jpg";
+			} else {
+				propic=user[i]['profile_pic'];
+			}
+			$("<div></div>").addClass("person").addClass("col-md-3").html("<img src='"+propic+"' />").appendTo(row);
 			$("<div></div>").addClass("col-md-4")
 			.html("<table>\
 				<tr><td>username</td><td>:</td><td>"+user[i]['username']+"</td></tr>\
@@ -130,9 +218,17 @@ loadPeopleSearchResults = function(query){
 				loadPeopleSearchResults(query);
 			});
 		});
+		console.log(contacts);
 		for(var i in contacts) {
 			var row = $("<div class='row'></div>");
-			$("<div></div>").addClass("person").addClass("col-md-3").html("<img src='"+contacts[i]['profile_pic']+"' />").appendTo(row);
+			if(contacts[i]['profile_pic']=='data: ;base64,') {
+				propic="anon.jpg";
+			} else {
+				propic=user[i]['profile_pic'];
+			}
+			$("<div></div>").addClass("person").click(function(){
+				loadProfile(contacts[i]['username'],contacts[i]['user_id']);
+			}).addClass("col-md-3").html("<img src='"+propic+"' />").appendTo(row);
 			$("<div></div>").addClass("col-md-4")
 			.html("<table>\
 				<tr><td>username</td><td>:</td><td>"+contacts[i]['username']+"</td></tr>\
