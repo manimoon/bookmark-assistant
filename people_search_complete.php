@@ -14,14 +14,12 @@ $userid=$_SESSION['auth_user_id'];
 
 $query="select * from user where (username like '%$q%' or first_name like '%$q%' or last_name like '%$q%') and user_id not in (select friend_id from contacts where user_id=$userid) and user_id<>$userid";
 
-if(strlen($_GET['query'])<1) {
-    exit(1);
-}
+
 $q = $_GET['query'];
 
 
 
-$query="select * from user where username like '%$q%' or first_name like '%$q%' or last_name like '%$q%'";
+/*$query="select * from user where username like '%$q%' or first_name like '%$q%' or last_name like '%$q%'";*/
 $res = $con->query($query);
 $response = array(
         "user"=>array(),
@@ -35,7 +33,7 @@ while($row = $res->fetch_assoc()) {
 
 $query = "select * from user where user_id in (select friend_id from contacts where user_id=$userid)";
 
-$query="select * from contacts";
+//$query="select * from contacts";
 $res = $con->query($query);
 
 while($row = $res->fetch_assoc()) {

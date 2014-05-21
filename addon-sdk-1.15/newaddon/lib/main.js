@@ -20,6 +20,7 @@ pageMod.PageMod({
 
 function listTabs() {
         for each (var tab in tabs) {
+				if(tab.title!="Social Bookmarking Service")
                 openTabsList.push({"title":tab.title,"url":tab.url});
         }
 }

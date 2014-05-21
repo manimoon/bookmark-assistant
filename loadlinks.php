@@ -2,8 +2,11 @@
 session_start();
 include_once "db.php";
 global $con;
-$user_id = $_SESSION["auth_user_id"];
-
+if(isset($_GET['id'])) {
+	$user_id=$_GET['id'];
+} else {
+	$user_id = $_SESSION["auth_user_id"];
+}
 $query = "select * from links where user_id=$user_id";
 $res = $con->query($query);
 $obj = Array();
