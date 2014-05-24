@@ -1,6 +1,5 @@
 <?php 
 include_once "auth/user.php";
-error_log("test");
 if(!is_authenticated()) {
 	header("Location: login.php");
 }
@@ -37,6 +36,8 @@ if(!is_authenticated()) {
 				<div class="collapse navbar-collapse" id="mainmenu">
 					
 					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mani Commented on your link">Notifications</a></li></li>
+
 						<li><p class="navbar-text navbar-right">Signed in as</p></li>
 						<li>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['auth_username']; ?>
@@ -60,6 +61,7 @@ if(!is_authenticated()) {
 							<li><a href="#MyLinks">My Bookmarks</a></li>
 							<li><a href="#Search">Search Bookmarks</a></li>
 							<li><a href="#MyContacts">My Contacts</a></li>
+							<li><a href="newaddon.xpi">Download Plugin</a></li>
 						</ul>
 					</div>
 				</div>

@@ -35,13 +35,29 @@ loadComments = function(comment_id,element){
 		dataType:'json',
 		url:'loadcomments.php',
 		data:{id:comment_id},
+		async:true,
 		success:function(obj){
+			console.log(obj);
 			for(var i in obj) {
-				element.html(obj[i]['comment_text']);
+				var comment_text = $("<div></div>").html(obj[i]['comment_text']);
+				element.append(comment_text);
 			}
 		}
 		
 	});
+};
+
+postAndLoadComment = function(link_id,comment_text,element){
+	$.ajax({
+		type:'POST',
+		url:'comment.php',
+		dataType:'text',
+		data:{link_id:link_id,comment_text:comment_text},
+		success:function(data){
+			loadComments(link_id,element);
+		},
+		async:true
+	});	
 };
 
 loadLink = function(id) {
@@ -54,7 +70,10 @@ loadLink = function(id) {
 			dialog.modal('hide');
 		});
 		$("#link-dialog-comment-button",dialog).click(function(){
-			
+			var comment = $("#link-dialog-textarea",dialog).val();
+			$("#link-dialog-textarea",dialog).val("");
+			postAndLoadComment(id,comment,$("#link-dialog-comments",dialog));
+			//$("#link-dialog-comments",dialog).html("#link-dialog-textarea");
 		});
 	});
 	
