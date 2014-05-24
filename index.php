@@ -36,7 +36,7 @@ if(!is_authenticated()) {
 				<div class="collapse navbar-collapse" id="mainmenu">
 					
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom" title="Mani Commented on your link">Notifications</a></li></li>
+						<li><a href="#notifications" id="open-notifications">Notifications</a></li></li>
 
 						<li><p class="navbar-text navbar-right">Signed in as</p></li>
 						<li>

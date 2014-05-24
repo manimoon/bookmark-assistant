@@ -39,8 +39,17 @@ loadComments = function(comment_id,element){
 		success:function(obj){
 			console.log(obj);
 			for(var i in obj) {
-				var comment_text = $("<div></div>").html(obj[i]['comment_text']);
-				element.append(comment_text);
+				
+				var sender = $("<sender></sender>");
+				sender.html(obj[i]['username']+":");
+				var comment_text = $("<div></div>")
+				comment_text.html(obj[i]['comment_text']);
+				
+				var comment=$("<div class='comment'></div>");
+				
+				comment.append(sender);
+				comment.append(comment_text);
+				element.append(comment);
 			}
 		}
 		
@@ -101,7 +110,7 @@ loadUserLinks = function(id,username){
 				for(var j in data[i]) {
 					var row = $("<tr link_id="+j+"></tr>");
 					$("<td class='col-md-4'>"+data[i][j]['title']+"</td>").appendTo(row);
-					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"'>"+data[i][j]['url']+"</a></td>").appendTo(row);
+					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"' target='_blank'>"+data[i][j]['url']+"</a></td>").appendTo(row);
 					table.append(row);
 					row.click(function(){
 						loadLink($(this).attr('link_id'));
@@ -143,7 +152,7 @@ loadMyLinks = function() {
 				for(var j in data[i]) {
 					var row = $("<tr link_id="+j+"></tr>");
 					$("<td class='col-md-4'>"+data[i][j]['title']+"</td>").appendTo(row);
-					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"'>"+data[i][j]['url']+"</a></td>").appendTo(row);
+					$("<td class='col-md-8'><a href='"+data[i][j]['url']+"' target='_blank'>"+data[i][j]['url']+"</a></td>").appendTo(row);
 					table.append(row);
 					row.click(function(){
 						loadLink($(this).attr('link_id'));
@@ -217,7 +226,7 @@ loadPeopleSearchResults = function(query){
 		for(var i in user) {
 			var row = $("<div class='row'></div>");
 			var propic="";
-			if(user[i]['profile_pic']=='data: ;base64,') {
+			if(user[i]['profile_pic']=='data: ;base64,'  || user[i]['profile_pic']=='') {
 				propic="anon.jpg";
 			} else {
 				propic=user[i]['profile_pic'];
@@ -240,7 +249,7 @@ loadPeopleSearchResults = function(query){
 		console.log(contacts);
 		for(var i in contacts) {
 			var row = $("<div class='row'></div>");
-			if(contacts[i]['profile_pic']=='data: ;base64,') {
+			if(contacts[i]['profile_pic']=='data: ;base64,' || contacts[i]['profile_pic']=='') {
 				propic="anon.jpg";
 			} else {
 				propic=user[i]['profile_pic'];
@@ -276,7 +285,7 @@ loadSearchResults = function(query){
 		$("#search-result table").html("");
 		for(var i in obj) {
 			$("<tr><td>"+obj[i]['title']+"</td>"+
-			"<td><a href='"+obj[i]['url']+"'>"+obj[i]['url']+"</a></td>"+
+			"<td><a href='"+obj[i]['url']+"' target='_blank'>"+obj[i]['url']+"</a></td>"+
 			"<td>"+obj[i]['category']+"</td></tr>").appendTo("#search-result table");
 		}
 	});
@@ -307,6 +316,17 @@ $(function(){
 			console.log(hash)
 			return;
 		}
+		event.preventDefault();
+	});
+	
+	$("#open-notifications").click(function(event){
+		$.get("notifications.php?seed="+Math.random(),{},function(data){
+			var dialog = $(data);
+			dialog.modal();
+			$(".close",dialog).click(function(){
+			dialog.modal('hide');
+			});
+		});
 		event.preventDefault();
 	});
 });

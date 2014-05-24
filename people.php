@@ -8,6 +8,7 @@ $res = $con->query($query);
 $response = array("user"=>array());
 
 while($row = $res->fetch_assoc()) {
+	error_log(json_encode($row));
     $response["user"][]=$row;
 }
 

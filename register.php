@@ -31,8 +31,24 @@ if(isset($_POST['username']) &&
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$(function(){
+				$("#username,#firstname,#lastname").on("keydown",function(event){
+					var key = event.keyCode;
+					if(key=='_' || key==8 || key==9 || key==46 || (key>=65 && key<=90) || (key>=97 && key<=122)) {
+						//
+					} else {
+						event.preventDefault();
+					}
+				});
+				
+				$("#dob").datepicker();
+			});
+		</script>
 	</head>
 	<body>
 		<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">

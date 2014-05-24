@@ -8,7 +8,8 @@ if(isset($_GET['id'])) {
 	echo "{}";
 	exit(1);
 }
-$query = "select * from comments where link_id=$link_id";
+//$query = "select * from comments where link_id=$link_id";
+$query = "select user.username,comments.comment_text,comments.time from user,comments where user.user_id=comments.user_id and comments.link_id=$link_id";
 error_log($query);
 $res = $con->query($query);
 

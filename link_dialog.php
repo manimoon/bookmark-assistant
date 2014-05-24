@@ -23,7 +23,7 @@ if($result = $con->query($query)) {
 				<h4 class="modal-title"><?php echo $row['title']; ?></h4>
 			</div>
 			<div class="modal-body">
-				<h5><a href="<?php echo $row['url']; ?>"><?php echo $row['url']; ?></a></h5>
+				<h5><a href="<?php echo $row['url']; ?>" target="_blank"><?php echo $row['url']; ?></a></h5>
 				<div>
 					<textarea cols="60" id="link-dialog-textarea"></textarea>
 				</div>
