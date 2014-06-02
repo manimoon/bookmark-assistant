@@ -79,12 +79,12 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `likes_dislikes` (
-  `likes_dislikes_id` int(11) DEFAULT NULL,
+  `likes_dislikes_id` int(11) NOT NULL AUTO_INCREMENT,
   `link_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `likedislike` text,
-  KEY `link_id` (`link_id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY (`likes_dislikes_id`),
+  UNIQUE KEY `link` (`link_id`,`user_id`) unique
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

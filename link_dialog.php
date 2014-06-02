@@ -2,6 +2,9 @@
 session_start();
 include_once "db.php";
 global $con;
+
+
+
 if(!isset($_GET['id'])) {
 	exit(1);
 }
@@ -28,7 +31,15 @@ if($result = $con->query($query)) {
 					<textarea cols="60" id="link-dialog-textarea"></textarea>
 				</div>
 				<div>
+					<span class="btn btn-link"><span id="link-dialog-likes"></span><?php ?>people like this</span>
+					<button class="btn btn-primary" id="link-dialog-like-button"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+					<button class="btn btn-primary" id="link-dialog-share-button"><span class="glyphicon glyphicon-share"></span></button>
 					<button class="btn btn-primary" id="link-dialog-comment-button">Comment</button>
+				</div>
+				<div id="link-dialog-share-options" class="hidden">
+					<label>Share with</label>
+					<input type="text" class="form-control">
+					<button class="btn btn-default"id="link-dialog-share-final-button">share</button>
 				</div>
 				<div id="link-dialog-comments">A
 				</div>

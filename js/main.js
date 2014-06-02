@@ -70,11 +70,13 @@ postAndLoadComment = function(link_id,comment_text,element){
 };
 
 loadLink = function(id) {
-
 	$.get("link_dialog.php?seed="+Math.random(),{id:id},function(data){
 		var dialog = $(data);
 		dialog.modal();
 		loadComments(id,$("#link-dialog-comments",dialog));
+		$.get("getlikes.php",{id:id},function(data){
+			$("#link-dialog-likes",dialog).html(data);
+		});
 		$(".close",dialog).click(function(){
 			dialog.modal('hide');
 		});
@@ -83,6 +85,24 @@ loadLink = function(id) {
 			$("#link-dialog-textarea",dialog).val("");
 			postAndLoadComment(id,comment,$("#link-dialog-comments",dialog));
 			//$("#link-dialog-comments",dialog).html("#link-dialog-textarea");
+		});
+		$("#link-dialog-like-button",dialog).click(function(){
+			$.ajax({
+				type:'GET',
+				url:'like.php',
+				data:{id:id},
+				success:function(data){
+					$.get("getlikes.php",{id:id},function(data){
+						$("#link-dialog-likes",dialog).html(data);
+					});
+				}
+			});
+		});
+		$("#link-dialog-share-button",dialog).click(function(){
+			$("#link-dialog-share-options",dialog).removeClass("hidden");
+		});
+		$("#link-dialog-share-final-button",dialog).click(function(){
+			alert($("#link-dialog-share-options input",dialog).val());
 		});
 	});
 	
@@ -252,7 +272,7 @@ loadPeopleSearchResults = function(query){
 			if(contacts[i]['profile_pic']=='data: ;base64,' || contacts[i]['profile_pic']=='') {
 				propic="anon.jpg";
 			} else {
-				propic=user[i]['profile_pic'];
+				propic=contacts[i]['profile_pic'];
 			}
 			$("<div></div>").addClass("person").click(function(){
 				loadProfile(contacts[i]['username'],contacts[i]['user_id']);
