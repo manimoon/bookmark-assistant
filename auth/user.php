@@ -57,4 +57,20 @@ function update_user($userid,$username,$fn,$ln,$email,$dob) {
 	error_log($query);
 	return $con->query($query);
 }
+
+
+function get_userid($username) {
+	global $con;
+	$query = "select user_id from user where username='$username'";
+	$result = $con->query($query);
+	if(!$result) {
+		error_log($query);
+	}
+	if($row = $result->fetch_array()) {
+		return $row[0];
+	}else {
+		return false;
+	}
+}
+
 ?>

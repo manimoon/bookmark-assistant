@@ -102,7 +102,11 @@ loadLink = function(id) {
 			$("#link-dialog-share-options",dialog).removeClass("hidden");
 		});
 		$("#link-dialog-share-final-button",dialog).click(function(){
-			alert($("#link-dialog-share-options input",dialog).val());
+			var to = $("#link-dialog-share-options input",dialog).val();
+			$.post('share.php',{id:id,to:to},function(data){
+				alert(data);
+			});
+			$("#link-dialog-share-options",dialog).addClass("hidden");
 		});
 	});
 	

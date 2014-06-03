@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `likes_dislikes` (
   `user_id` int(11) DEFAULT NULL,
   `likedislike` text,
   PRIMARY KEY (`likes_dislikes_id`),
-  UNIQUE KEY `link` (`link_id`,`user_id`) unique
+  UNIQUE KEY `link` (`link_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `share` (
   `from` int(11) DEFAULT NULL,
   `to` int(11) DEFAULT NULL,
   PRIMARY KEY (`share_id`),
+  UNIQUE KEY `share` (`link_id`,`from`,`to`),
   KEY `link_id` (`link_id`),
   KEY `from` (`from`),
   KEY `to` (`to`)
@@ -135,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email_id` text,
   `profile_pic` text,
   `dob` date DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
